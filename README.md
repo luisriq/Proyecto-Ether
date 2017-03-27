@@ -32,7 +32,9 @@ Estos Scripts escritos en bash, facilitan la iniciacion y ejecucion de distintos
 * ejecutarVariosNodos.sh: Inicializa el nodo con el bloque inicial respectivo y abrirá varias ventanas de terminal con el modo consola de geth
     - ./ejecutarVariosNodos.sh -n NUMERO_DE_NODOS
 * ejecutarNodo.sh: Inicializa el nodo dado como parametro y mostrará el modo consola
-    - ./ejecutarNodo.sh -n NODO_A_INICIAR 
+    - ./ejecutarNodo.sh -n NODO_A_INICIAR
+
+En caso de utilizar Vagrant o algún entorno donde no se tiene acceso directo a una aplicación de terminal, se recomienda utilizar el segundo script.
 ## Consola
 
 Una vez inciada la consola de algún nodo es posible verificar el funcionamiento observando los datos del mismo:
