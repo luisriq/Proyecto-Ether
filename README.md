@@ -40,8 +40,6 @@ En caso de utilizar Vagrant o algún entorno donde no se tiene acceso directo a 
 Una vez inciada la consola de algún nodo es posible verificar el funcionamiento observando los datos del mismo:
 ```sh
 > admin.nodeInfo
-```
-```
 {
   enode: "enode://29fe884133ad4aec583468b949efc4d06e2cd00dfcfdc99f17c613abd4b0d7cc80f85460a78c72fdc6a3ad08e3a6e33271252095ad9504fe2e3c1f76e3fe083f@192.168.24.3:30300",
   id: "29fe884133ad4aec583468b949efc4d06e2cd00dfcfdc99f17c613abd4b0d7cc80f85460a78c72fdc6a3ad08e3a6e33271252095ad9504fe2e3c1f76e3fe083f",
@@ -68,6 +66,7 @@ Ya que la dificultad dada en el Genesis Block se ve reflejada en la configuracio
 Para que los nodos iniciados interactúen entre sí, es necesario que se descubran en la misma red. Para verificar los nodos pares se utiliza el comando:
 ```sh
 > admin.peers
+[]
 ```
 Si no existen nodos agregados, se puede utlizar el siguiente comando con el **enode** del nodo a agregar:
 ```sh
@@ -90,7 +89,7 @@ I0326 22:40:42.756853 cmd/geth/main.go:286] New wallet appeared: keystore:///Use
 ```
 
 ## Minar Ether
-Minar Ether agrega **wei** a la cuenta en el coinbase, para cambiar de cuenta se puede usar el siguiente comando:
+Minar Ether agrega **wei** a la cuenta en el coinbase, para cambiar de cuenta se puede usar el siguiente comando, sin embargo por defecto la cuenta creada queda como etherbase:
 ```sh
 > miner.setEtherbase("0x1fba612f5ee926367abe000dcf635ed6cd6488f3")
 ```
