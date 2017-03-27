@@ -123,7 +123,7 @@ Sin embargo primero es necesario desbloquear la cuenta usando:
 
 ## JSON RPC API
 
-Existe una API con la que es posible comuncarse con Geth, el puerto por defecto es el **800n** donde n es el indice del nodo con el que se quiere interactuar. Entonces el EntryPoint de esta API sería
+Existe una API con la que es posible comuncarse con Geth, el puerto por defecto es el **800n** donde n es el indice del nodo con el que se quiere interactuar. Entonces el EndPoint de esta API sería
 ```
 http://localhost:800n/
 ```
