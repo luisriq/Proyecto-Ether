@@ -121,6 +121,15 @@ Sin embargo primero es necesario desbloquear la cuenta usando:
 
 **Nota**: Cuando se realiza una transacción esta no se ve reflejada inmediatamente si no hasta que alguien mas mine, ya que es en este proceso donde se agrega un nuevo bloque al BlockChain.
 
+## JSON RPC API
+
+Existe una API con la que es posible comuncarse con Geth, el puerto por defecto es el **800n** donde n es el indice del nodo con el que se quiere interactuar. Entonces el EntryPoint de esta API sería
+```
+http://localhost:800n/
+```
+Para mas informacion acerca de la estructura de las peticiones y los metodos disponibles puede leer la documentacion de la [API JSON RPC] de Geth
+
 
 [Guia de instalacion]: <https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum>
 [DAG]: <https://github.com/ethereum/wiki/wiki/Ethash-DAG>
+[API JSON RPC]: <https://github.com/ethereum/wiki/wiki/JSON-RPC#json-rpc-methods>
