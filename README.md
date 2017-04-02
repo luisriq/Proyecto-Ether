@@ -73,7 +73,16 @@ Si no existen nodos agregados, se puede utlizar el siguiente comando con el **en
 > admin.addPeer("enode://c21ed538e264fc78c2dcfab3c0233b98645c51c00843a18d9ba820511a9ab9df9f6e77fb8b6f8db8ada507692dd95a48be5b536cd9e0ba8c216dbb405f701262@192.168.24.3:30301")
 true
 ```
-Esto solo necesario hacerlo en un nodo.
+La conexión se establece de forma bidireccional con el nodo pero es necesario hacerlo entre los demás nodos 
+
+Ejemplo: 
+*Nodo A agrega a nodo B
+*Nodo A agrega a nodo C
+*Resultado: 
+  *A se encuentra conectado con B y C
+  *B se encuentra conectado con A
+  *C se encuentra conectado con A
+*B y C no se encuentran conectados entre ellos, es necesario realizar esa conexión aún
 
 ## Crear cuenta
 
@@ -115,12 +124,29 @@ I0326 23:13:27.433058 internal/ethapi/api.go:1143] Tx(0x563d01b502e0471895ae76ae
 ```
 Sin embargo primero es necesario desbloquear la cuenta usando:
 ```sh
-> personal.unlock(eth.coinbase)
+> personal.unlockAccount(eth.coinbase)
 ```
+La duración del desbloqueo por defecto es de 300 segundos, luego de esto se vuelve a bloquear (por motivos de seguridad); esto puede ser molesto al realizar pruebas, por lo que alternativamente se puede utilizar el comando de la forma:
+```sh
+personal.unlockAccount(addr, pswd, duration)
+```
+Indicando para la cuenta una duración 0 mantendrá el desbloqueo por la sesión de geth.
+Con la contraseña "1234" como ejemplo, este comando quedaría de la forma:
+```sh
+personal.unlockAccount(eth.coinbase, "1234", 0)
+```
+Cabe notar que los comandos en consola quedan en un historial por lo que no es seguro exponer la contraseña de esta forma.
 
+**Nota**: Cuando se realiza una transacción esta no se ve reflejada inmediatamente si no hasta que alguien mine, ya que es en este proceso donde se agrega un nuevo bloque al BlockChain.
 
-**Nota**: Cuando se realiza una transacción esta no se ve reflejada inmediatamente si no hasta que alguien mas mine, ya que es en este proceso donde se agrega un nuevo bloque al BlockChain.
-
+Para revisar el balance de la cuenta en un nodo se puede utilizar:
+```sh
+eth.getBalance(eth.coinbase).toNumber();
+```
+Esto obtiene la cantidad de Wei (la unidad más granular de moneda) en la cuenta, para verlo en Ether se usa.
+```sh
+web3.fromWei(eth.getBalance(eth.coinbase), "ether")
+```
 ## JSON RPC API
 
 Existe una API con la que es posible comuncarse con Geth, el puerto por defecto es el **800n** donde n es el indice del nodo con el que se quiere interactuar. Entonces el EndPoint de esta API sería
