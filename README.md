@@ -76,13 +76,13 @@ true
 La conexión se establece de forma bidireccional con el nodo pero es necesario hacerlo entre los demás nodos 
 
 Ejemplo: 
-*Nodo A agrega a nodo B
-*Nodo A agrega a nodo C
-*Resultado: 
-  *A se encuentra conectado con B y C
-  *B se encuentra conectado con A
-  *C se encuentra conectado con A
-*B y C no se encuentran conectados entre ellos, es necesario realizar esa conexión aún
+* Nodo A agrega a nodo B
+* Nodo A agrega a nodo C
+* Resultado: 
+  * A se encuentra conectado con B y C
+  * B se encuentra conectado con A
+  * C se encuentra conectado con A
+* B y C no se encuentran conectados entre ellos, es necesario realizar esa conexión aún
 
 ## Crear cuenta
 
@@ -143,7 +143,7 @@ Para revisar el balance de la cuenta en un nodo se puede utilizar:
 ```sh
 eth.getBalance(eth.coinbase).toNumber();
 ```
-Esto obtiene la cantidad de Wei (la unidad más granular de moneda) en la cuenta, para verlo en Ether se usa.
+Esto obtiene la cantidad de Wei (la unidad más granular de moneda) en la cuenta, para verlo en Ether se usa:
 ```sh
 web3.fromWei(eth.getBalance(eth.coinbase), "ether")
 ```
