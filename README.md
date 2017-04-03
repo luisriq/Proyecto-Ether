@@ -4,6 +4,10 @@ Guia de configuracion para la herramienta Geth.
 
 # Instalación
   - Seguir los pasos oficiales según la plataforma a utilizar en [Guia de instalacion]
+  - Alternativamente, se puede ejecutar el archivo install.sh el cual instala (por defecto) en la carpeta de usuario de Ubuntu:
+    - Ethereum
+    - Geth
+    - Node.js
 
 # Configuracion
 
