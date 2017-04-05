@@ -215,7 +215,8 @@ Para obtener el contrato en un nuevo nodo se necesitan 2 elementos escenciales:
 * ABI DEFINITION
 * CODIGO
 
-### Obtener ABI DEFINITION
+
+### Obtener ABI DEFINITION y Direccióon
 
 Desde el primer nodo donde se creó el contrato se puede obtener mediante cualquiera de los siguientes comandos:
 ```js
@@ -224,11 +225,19 @@ Desde el primer nodo donde se creó el contrato se puede obtener mediante cualqu
 ```
 Lo que devuelve es un arreglo de diccionarios con la interfaz para hacer uso del contrato.
 
-### Obtener Codigo
-Es posible obtener el codigo mediante la direccion que se encuentra en:
+Es posible obtener la direccion mediante:
 ```js
-> 
+> contratoInstanciado.address
+"0x15a974b2208bff48ff21cb62fcc4c3ae8f0e5994"
 ```
+
+Con esta direccion es posible usar:
+
+```js
+> var contratoN = eth.contract(contratoABI)
+> var contratoInstanciado = contratoN.at("0x15a974b2208bff48ff21cb62fcc4c3ae8f0e5994")
+```
+
 
 
 
