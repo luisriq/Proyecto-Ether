@@ -216,7 +216,7 @@ Para obtener el contrato en un nuevo nodo se necesitan 2 elementos escenciales:
 * CODIGO
 
 
-### Obtener ABI DEFINITION y Direccióon
+### Obtener ABI DEFINITION y Dirección
 
 Desde el primer nodo donde se creó el contrato se puede obtener mediante cualquiera de los siguientes comandos:
 ```js
