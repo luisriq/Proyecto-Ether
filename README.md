@@ -4,6 +4,10 @@ Guia de configuracion para la herramienta Geth.
 
 # Instalación
   - Seguir los pasos oficiales según la plataforma a utilizar en [Guia de instalacion]
+  - Alternativamente, se puede ejecutar el archivo install.sh el cual instala (por defecto) en la carpeta de usuario de Ubuntu:
+    - Ethereum
+    - Geth
+    - Node.js
 
 # Configuracion
 
@@ -156,6 +160,90 @@ http://localhost:800n/
 Para mas informacion acerca de la estructura de las peticiones y los metodos disponibles puede leer la documentacion de la [API JSON RPC] de Geth
 
 
+# Contratos
+Antes de comenzar a trabajar con contratos, hay que instalar un compilador. En este caso usaremos Solidity, para la instalacion deben seguir las instrucciones del OS respectivo. [Instrucciones de instalacion de Solidity]
+Es posible verificar los compiladores disponibles con el comando.
+``` js
+> eth.getCompilers()
+["Solidity"]
+```
+Para la creacion de un contrato es necesario seguir los siguientes pasos.
+* Compilar el contrato
+* Crear Contrato
+* Instanciar Contrato
+* Publicar contrato
+
+## Compilar contrato
+Para compilar se usa el comando:
+```js
+> var contratoCompilado = eth.compile.solidty("CODIGODECONTRATO")
+```
+***Nota**: Para compilar desde la terminal es necesario utilizar herramientas que quiten los saltos de linea y otros caracteres que puedan interferir con las entradas de la terminal usada. Ej: [TextFixer]*
+
+## Crear contrato
+Usando el comando:
+```js
+var contrato = eth.contract(contratoCompilado["<stdin>:Greeter"].info.abiDefinition)
+```
+Donde *Greeter* corresponde a la clase del contrato que se quiere utilizar.
+
+## Instanciar contrato
+Para crear una instancia del contrato y poder interactuar con este se utiliza:
+```js
+> var contratoInstanciado = contrato.new("Saludo1", {from: eth.coinbase, data: contratoCompilado["<stdin>:Greeter"].code, gas: 1000000})
+```
+Donde **"Saludo1"** es el primer argumento del constructor de ***Greeter***.  ***from*** es la cuenta con la que se quiere publicar el contrato, ***data*** es el codigo del contrato compilado y finalmente ***gas*** corresponde al limite de gas a usar por el contrato, para mas informacion sobre el funcionamiento de este ver en el siguiente link: [GAS].
+
+*Nota: Si el ***gas*** no es sufiente para correr el contrato, nunca tendrá una direccion con la cual acceder a el ni será ejecutado en la red.*
+
+*Nota 2: Una vez instanciado el contrato, este debe ser minado por lo que mientras nadie en la red miner el contrato no podrá ser utilizado.*
+
+Para probar el contrato se puede correr la funcion ***greet()*** la que deberia devolver el saludo entregado en un principio.
+```js
+> contratoInstanciado.greet()
+```
+
+## Enviar transacciones al contrato
+Para llamar a funciones del contrato que requieran cambios en el mismo, es necesario realizar una transacción por ejemplo:
+```js
+> contratoInstanciado.cambiar.sendTransaction("Nuevo Saludo", {from:eth.coinbase})
+```
+Una vez minada la transaccion, el cambio debería reflejarse en todos los nodos con el contrato instanciado.
+
+## Obtener el contrato en otros nodos
+Para obtener el contrato en un nuevo nodo se necesitan 2 elementos escenciales:
+* ABI DEFINITION
+* CODIGO
+
+
+### Obtener ABI DEFINITION y Dirección
+
+Desde el primer nodo donde se creó el contrato se puede obtener mediante cualquiera de los siguientes comandos:
+```js
+> contratoInstanciado.abi
+> contratoCompilado["<stdin>:Greeter"].info.abiDefinition
+```
+Lo que devuelve es un arreglo de diccionarios con la interfaz para hacer uso del contrato.
+
+Es posible obtener la direccion mediante:
+```js
+> contratoInstanciado.address
+"0x15a974b2208bff48ff21cb62fcc4c3ae8f0e5994"
+```
+
+Con esta direccion es posible usar:
+
+```js
+> var contratoN = eth.contract(contratoABI)
+> var contratoInstanciado = contratoN.at("0x15a974b2208bff48ff21cb62fcc4c3ae8f0e5994")
+```
+
+
+
+
+[GAS]:<http://ethdocs.org/en/latest/contracts-and-transactions/account-types-gas-and-transactions.html#what-is-gas>
+[TextFixer]:<http://www.textfixer.com/tools/remove-line-breaks.php>
+[Instrucciones de instalacion de Solidity]:<http://solidity.readthedocs.io/en/develop/installing-solidity.html#binary-packages>
 [Guia de instalacion]: <https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum>
 [DAG]: <https://github.com/ethereum/wiki/wiki/Ethash-DAG>
 [API JSON RPC]: <https://github.com/ethereum/wiki/wiki/JSON-RPC#json-rpc-methods>
