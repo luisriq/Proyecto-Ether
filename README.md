@@ -221,7 +221,7 @@ Para obtener el contrato en un nuevo nodo se necesitan 2 elementos escenciales:
 Desde el primer nodo donde se creó el contrato se puede obtener mediante cualquiera de los siguientes comandos:
 ```js
 > contratoInstanciado.abi
-> contratoCompilado["<stdin>:Greeter"].info.abiDefinition
+> contratoCompilado["<stdin>:greeter"].info.abiDefinition
 ```
 Lo que devuelve es un arreglo de diccionarios con la interfaz para hacer uso del contrato.
 
