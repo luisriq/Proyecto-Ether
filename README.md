@@ -192,7 +192,7 @@ Para crear una instancia del contrato y poder interactuar con este se utiliza:
 ```js
 > var contratoInstanciado = contrato.new("Saludo1", {from: eth.coinbase, data: contratoCompilado["<stdin>:greeter"].code, gas: 1000000})
 ```
-Donde **"Saludo1"** es el primer argumento del constructor de ***Greeter***.  ***from*** es la cuenta con la que se quiere publicar el contrato, ***data*** es el codigo del contrato compilado y finalmente ***gas*** corresponde al limite de gas a usar por el contrato, para mas informacion sobre el funcionamiento de este ver en el siguiente link: [GAS].
+Donde **"Saludo1"** es el primer argumento del constructor de ***greeter***.  ***from*** es la cuenta con la que se quiere publicar el contrato, ***data*** es el codigo del contrato compilado y finalmente ***gas*** corresponde al limite de gas a usar por el contrato, para mas informacion sobre el funcionamiento de este ver en el siguiente link: [GAS].
 
 *Nota: Si el ***gas*** no es sufiente para correr el contrato, nunca tendrá una direccion con la cual acceder a el ni será ejecutado en la red.*
 
