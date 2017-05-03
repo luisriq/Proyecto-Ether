@@ -183,14 +183,14 @@ Para compilar se usa el comando:
 ## Crear contrato
 Usando el comando:
 ```js
-var contrato = eth.contract(contratoCompilado["<stdin>:Greeter"].info.abiDefinition)
+var contrato = eth.contract(contratoCompilado["<stdin>:greeter"].info.abiDefinition)
 ```
 Donde *Greeter* corresponde a la clase del contrato que se quiere utilizar.
 
 ## Instanciar contrato
 Para crear una instancia del contrato y poder interactuar con este se utiliza:
 ```js
-> var contratoInstanciado = contrato.new("Saludo1", {from: eth.coinbase, data: contratoCompilado["<stdin>:Greeter"].code, gas: 1000000})
+> var contratoInstanciado = contrato.new("Saludo1", {from: eth.coinbase, data: contratoCompilado["<stdin>:greeter"].code, gas: 1000000})
 ```
 Donde **"Saludo1"** es el primer argumento del constructor de ***Greeter***.  ***from*** es la cuenta con la que se quiere publicar el contrato, ***data*** es el codigo del contrato compilado y finalmente ***gas*** corresponde al limite de gas a usar por el contrato, para mas informacion sobre el funcionamiento de este ver en el siguiente link: [GAS].
 
