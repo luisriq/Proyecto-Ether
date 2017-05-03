@@ -176,7 +176,7 @@ Para la creacion de un contrato es necesario seguir los siguientes pasos.
 ## Compilar contrato
 Para compilar se usa el comando:
 ```js
-> var contratoCompilado = eth.compile.solidty("CODIGODECONTRATO")
+> var contratoCompilado = eth.compile.solidity("CODIGODECONTRATO")
 ```
 ***Nota**: Para compilar desde la terminal es necesario utilizar herramientas que quiten los saltos de linea y otros caracteres que puedan interferir con las entradas de la terminal usada. Ej: [TextFixer]*
 
